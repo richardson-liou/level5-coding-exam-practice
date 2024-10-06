@@ -34,12 +34,21 @@ public class CodingExamA {
 		// Your goal is to replace this loop with a more optimal solution by splitting this task in half using two threads.
 		// Have each thread call doWidget() on half of the array of widgets.
 		// If done correctly, the elapsed time should be approximately half of the original time.
-		for(int i = 0; i < TOTAL_WIDGETS; i++) {
-			widgets[i].doWidget();
-		}
+		Thread thread1 = new Thread(() -> {
+	        for(int i = 0; i < TOTAL_WIDGETS / 2; i++) {
+	            widgets[i].doWidget();
+	        }
+	    });
+
+	    Thread thread2 = new Thread(() -> {
+	        for(int i = TOTAL_WIDGETS / 2; i < TOTAL_WIDGETS; i++) {
+	            widgets[i].doWidget();
+	        }
+	    });                                                                                                                                                                                                   
 		
-		
-		
+		thread1.start();
+		thread2.start();   
+		                                                                                                                                                                                                                                                                                                                                                                                                            
 		
 		//DO NOT ALTER
 		for(int i = 0; i < TOTAL_WIDGETS; i++) {
